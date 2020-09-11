@@ -1,4 +1,4 @@
-package br.com.facef.rabbitmqdlq.parkingLot;
+package br.com.facef.rabbitmqdlq.parkingLog;
 
 import br.com.facef.rabbitmqdlq.configuration.DirectExchangeConfiguration;
 import org.springframework.amqp.core.Message;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 
-public class ParkingLot {
+public class ParkingLog {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -29,7 +29,7 @@ public class ParkingLot {
     }
 
     public void putIntoParkingLot(Message failedMessage) {
-        log.info("Inserindo no parking lot");
+        log.info("Inserindo no parking-log");
         this.rabbitTemplate.send(DirectExchangeConfiguration.ORDER_MESSAGES_QUEUE_PARKINGLOT, failedMessage);
     }
 }
