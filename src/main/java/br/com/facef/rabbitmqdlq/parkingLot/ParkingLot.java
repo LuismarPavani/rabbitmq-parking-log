@@ -1,4 +1,4 @@
-package br.com.facef.rabbitmqdlq.parkingLog;
+package br.com.facef.rabbitmqdlq.parkingLot;
 
 import br.com.facef.rabbitmqdlq.configuration.DirectExchangeConfiguration;
 import org.springframework.amqp.core.Message;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 
-public class ParkingLog {
+public class ParkingLot {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;

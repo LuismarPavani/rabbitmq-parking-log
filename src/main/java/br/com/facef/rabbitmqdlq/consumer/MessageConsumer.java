@@ -1,7 +1,7 @@
 package br.com.facef.rabbitmqdlq.consumer;
 
 import br.com.facef.rabbitmqdlq.configuration.DirectExchangeConfiguration;
-import br.com.facef.rabbitmqdlq.parkingLog.ParkingLog;
+import br.com.facef.rabbitmqdlq.parkingLot.ParkingLot;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.core.Message;
@@ -14,11 +14,11 @@ public class MessageConsumer {
 
     @RabbitListener(queues = DirectExchangeConfiguration.ORDER_MESSAGES_QUEUE_NAME)
     public void processOrderMessage(Message message) {
-        ParkingLog parkingLog = new ParkingLog();
+        ParkingLot parkingLot = new ParkingLot();
 
         log.info("Processando Mensagem: {}", message.toString());
-        if (parkingLog.hasExceededRetryCount(message)) {
-            parkingLog.putIntoParkingLot(message);
+        if (parkingLot.hasExceededRetryCount(message)) {
+            parkingLot.putIntoParkingLot(message);
             return;
         }
         // By default the messages will be requeued
